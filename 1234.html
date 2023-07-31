@@ -1,0 +1,28 @@
+<head>
+  <style>
+    .cover {
+      background-color: antiquewhite;
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+    }
+  </style>
+</head>
+
+<body>
+  <div>Page1</div>
+  <div class="cover"></div>
+  <script>
+    const parentWindow = window.parent
+    console.log('%c [  ]-7', 'font-size:13px; background:pink; color:#bf2c9f;',55555)
+    console.log(parentWindow)
+    parentWindow.say()
+    console.log('%c [  ]-7', 'font-size:13px; background:pink; color:#bf2c9f;', parentWindow.document.querySelector('h3'))
+    parentWindow.document.querySelector('h3').innerText = 'chlld change h3'
+    function run(){
+      console.log('%c [  ]-9', 'font-size:13px; background:pink; color:#bf2c9f;', 'i am child run')
+    }
+  </script>
+</body>

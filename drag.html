@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    body {
+      /* user-select: none; */
+    }
+
+    .dragOrigin {
+      width: 300px;
+      height: 300px;
+      border: 1px solid blueviolet;
+      display: grid;
+      place-content: center;
+    }
+
+    .dragBox {
+      width: 100px;
+      height: 100px;
+      background-color: aqua;
+    }
+
+    .dragTarget {
+      width: 300px;
+      height: 300px;
+      border: 1px solid gold;
+      user-select: all;
+    }
+
+    .dragging {
+      /* opacity: .5; */
+    }
+  </style>
+  <script>
+    window.onload = () => {
+      const dragBox = document.querySelector('.dragBox')
+      const target = document.querySelector(".dragTarget")
+
+      /**
+       * 容器添加dragover事件，且preventDefault是必要的。
+       * 1. 在移动元素移动到该容器时， 会出现可以放置的标志,普通元素只是禁止标识。
+       * 2, 只有阻止dragover默认事件，才能触发drop事件。
+       * */
+
+      target.addEventListener("dragover", (event) => {
+        // prevent default to allow drop
+        event.preventDefault();
+      }, false);
+      target.addEventListener("drop", (event) => {
+        console.log('%c [  ]-52', 'font-size:13px; background:pink; color:#bf2c9f;', 123)
+        // prevent default action (open as link for some elements)
+        event.preventDefault();
+        // move dragged element to the selected drop target
+        event.target.classList.remove("dragover");
+        dragBox.parentNode.removeChild(dragBox);
+        event.target.appendChild(dragBox);
+      });
+    }
+
+  </script>
+</head>
+
+<body>
+  <div class="dragOrigin">
+    <div class="dragBox" draggable="true">我可以拖动</div>
+  </div>
+  <div class="dragTarget"></div>
+</body>
+
+</html>
