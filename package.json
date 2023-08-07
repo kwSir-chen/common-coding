@@ -1,0 +1,22 @@
+{
+  "name": "common-coding",
+  "version": "1.0.0",
+  "description": "coding",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kwSir-chen/common-coding.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kwSir-chen/common-coding/issues"
+  },
+  "homepage": "https://github.com/kwSir-chen/common-coding#readme",
+  "dependencies": {
+    "typescript": "^5.1.6"
+  }
+}
