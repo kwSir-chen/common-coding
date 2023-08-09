@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    /** 
+    * 主要有几个要点。
+      1. transform-style: preserve-3d;  实现3d翻转效果。
+      2. backface-visibility: hidden;  实现3d翻转时，不可见。需搭配上面的属性。
+      3. 一张卡片，其实是两个元素。一个背面，一个正面。需要配置绝对定位，让两个元素重叠。一个180deg反面，一个0deg正面。
+      4. 改变ratateY，实现翻转效果。
+    **/
+    .card {
+      transition: transform 800ms ease;
+      transform-style: preserve-3d;
+      position: relative;
+      width:200px;
+      height:200px;
+    }
+    .card>div {
+      position: absolute;
+      width: 200px;
+      height: 200px;
+      left: 0;
+      top: 0;
+      backface-visibility: hidden;
+    }
+    .front {
+      background-color: aqua;
+      transform: rotateY(0deg);
+    }
+    .back {
+      background-color: brown;
+      transform: rotateY(-180deg);
+    }
+    .card:hover {
+      transform: rotateY(-180deg);
+    }
+    .card {
+      transform: rotateY(0deg);
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="front">正</div>
+    <div class="back">反</div>
+  </div>
+  <div class="nei">
+    <p>11111111</p>
+    <p class="neip">22222222222</p>
+    <p>33333333</p>
+  </div>
+</body>
+</html>
