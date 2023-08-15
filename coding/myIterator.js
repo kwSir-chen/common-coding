@@ -8,26 +8,26 @@
 
 
 
-// function myIterator() {
-//   let index = 0;
-//   let obj = this;
-//   let keyArr = Object.keys(obj)
+function myIterator() {
+  let index = 0;
+  let obj = this;
+  let keyArr = Object.keys(obj)
 
-//   return {next() {
-//     if (index < keyArr.length) {
-//       return {
-//         value: obj[keyArr[index++]],
-//         done: false
-//       }
-//     } else {
-//       return {
-//         value: undefined,
-//         done: true
-//       }
-//     }
+  return {next() {
+    if (index < keyArr.length) {
+      return {
+        value: obj[keyArr[index++]],
+        done: false
+      }
+    } else {
+      return {
+        value: undefined,
+        done: true
+      }
+    }
 
-//   }}
-// }
+  }}
+}
 
 const obj1 = {
   a: 'a',

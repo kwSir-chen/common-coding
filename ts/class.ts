@@ -29,3 +29,7 @@ console.log('%c [  ]-25', 'font-size:13px; background:pink; color:#bf2c9f;', per
 
 let son = new Son(11)
 son.sonSay()
+
+function fn(this: Person,a:string){console.log(this.say)}
+
+fn.call(person,'124')
