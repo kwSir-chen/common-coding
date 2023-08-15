@@ -30,7 +30,9 @@ class MyPromise {
         } else {
           this.value = value
           this.status = __FULLFILLED__
-          this.thenResolveFnList.forEach(f => f(this.value))
+          setTimeout(()=>{
+            this.thenResolveFnList.forEach(f => f(this.value))
+          })
         }
       }
     }
@@ -41,7 +43,9 @@ class MyPromise {
         } else {
           this.reason = value
           this.status = __REJECTED__
-          this.thenRejectFnList.forEach(f => f(this.reason))
+          setTimeout(()=>{
+            this.thenRejectFnList.forEach(f => f(this.reason))
+          })
         }
       }
     }
@@ -79,10 +83,11 @@ class MyPromise {
         }
       }
       if (this.status === __FULLFILLED__) {
-        execResolveFn(this.value, resolveFn, rejectFn, resolve, reject)
+        setTimeout(()=>execResolveFn(this.value, resolveFn, rejectFn, resolve, reject))
+        
       }
       if (this.status === __REJECTED__) {
-        execRej(this.reason, rejectFn, reject)
+        setTimeout(()=>execRej(this.reason, rejectFn, reject))
       }
       if (this.status === __PENDING__) {
         this.thenResolveFnList.push(v => execResolveFn(v, resolveFn, rejectFn, resolve, reject))
@@ -201,13 +206,14 @@ MyPromise.any = function (promiseArr) {
 // test
 
 function runPromiseTest(Promise) {
+  const log = (...args)=>console.log(Promise.name,...args)
   Promise.resolve('successs').then(v => {
-    console.log('suc', v)
+    log('suc', v)
     return new Promise(resolve => {
       setTimeout(resolve('wait 1'), 1000)
     })
-  }).then().then(r => console.log(r)).finally(() => { throw ('error') }).catch(e => { console.log('catch', e) }).then(() => { }, err => {
-    console.log('err', err);
+  }).then().then(r =>{ log(r);return 333}).finally(() => { log('finally'); throw 'final err';return 'finalData' }).then(r=>log('finalres',r)).catch(e => { log('catch', e) }).then(() => { }, err => {
+    log('err', err);
   })
 
 
@@ -217,11 +223,11 @@ function runPromiseTest(Promise) {
 
   const promises = [promise1, promise2, promise3];
 
-  console.log('allSettled')
-  Promise.allSettled(promises).then((value) => console.log('allSettled',value));
+  log('allSettled')
+  Promise.allSettled(promises).then((value) => log('allSettled',value));
 
-  console.log('any')
-  Promise.any(promises).then((value) => console.log('any',value));
+  log('any')
+  Promise.any(promises).then((value) => log('any',value));
 }
 
 runPromiseTest(MyPromise)
