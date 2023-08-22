@@ -2,7 +2,7 @@
  * Symbol.iterator有以下要点。
  * 1. iterator是小写。
  * 2. iterator只执行一次，后面遍历执行的都是next方法。
- * 3. iterator必须返回一个对象，对象里面有next方法。
+ * 3. iterator是一个function。iterator必须返回一个对象，对象里面有next方法。
  * 4. next方法必须返回iterator函数格式。即{value: any,done: boolean}
  */
 
